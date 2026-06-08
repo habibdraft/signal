@@ -36,20 +36,6 @@ t = lambda x, y: y[stable(x)].sum()
 
 ---
 
-## 🧠 Key Idea
-
-Instead of writing imperative transformations over arrays, you define **signal relationships declaratively**:
-
-```
-signals → predicates → filtered aggregations → outputs
-```
-
-Think:
-
-> "Define *what* a signal means, not *how* to compute it."
-
----
-
 ## 🏗️ Architecture
 
 ```mermaid
