@@ -1,9 +1,7 @@
-[README.md](https://github.com/user-attachments/files/28725462/README.md)
 # Signal Transform DSL
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![Parser](https://img.shields.io/badge/parser-Lark-green.svg)
-![DSL](https://img.shields.io/badge/domain-specific-language-orange.svg)
 ![Status](https://img.shields.io/badge/status-experimental-yellow.svg)
 
 A lightweight **domain-specific language (DSL)** for defining and evaluating signal transformations over structured numeric data.
