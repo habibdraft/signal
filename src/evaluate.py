@@ -1,4 +1,4 @@
-from ast_nodes import Signal, Constant, Diff, Cumsum, Eq, And, Or
+from ast_nodes import Signal, Constant, Diff, Rise, Fall, Cumsum, Eq, And, Or
 import torch
 
 def evaluate(node, ctx):
@@ -12,6 +12,12 @@ def evaluate(node, ctx):
     if isinstance(node, Diff):
         return torch.diff(evaluate(node.expr, ctx))
 
+    if isinstance(node, Rise):
+        return evaluate(Diff(node.expr), ctx) == 1
+
+    if isinstance(node, Fall):
+        return evaluate(Diff(node.expr), ctx) == -1
+
     if isinstance(node, Cumsum):
         return torch.cumsum(evaluate(node.expr, ctx), dim=0)
 
@@ -19,7 +25,7 @@ def evaluate(node, ctx):
         return evaluate(node.left, ctx) == evaluate(node.right, ctx)
 
     if isinstance(node, And):
-        return evaluate(node.left, ctx) & evaluate(node.right, ctx) # what do we want And to do?
+        return evaluate(node.left, ctx) & evaluate(node.right, ctx)
 
     if isinstance(node, Or):
         return evaluate(node.left, ctx) | evaluate(node.right, ctx)

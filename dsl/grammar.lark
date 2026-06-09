@@ -2,14 +2,16 @@ start: expr
 
 ?expr: expr "&" expr   -> and_expr
      | expr "|" expr   -> or_expr
-     | expr "==" NUMBER -> eq
+     | expr "==" SIGNED_NUMBER -> eq
      | "C" "(" expr ")" -> cumsum
      | "D" "(" expr ")" -> diff
+     | "R" "(" expr ")" -> rise
+     | "F" "(" expr ")" -> fall
      | NAME
-     | NUMBER
+     | SIGNED_NUMBER
      | "(" expr ")"
 
 %import common.CNAME -> NAME
-%import common.NUMBER
+%import common.SIGNED_NUMBER
 %import common.WS
 %ignore WS

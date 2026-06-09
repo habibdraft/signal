@@ -18,6 +18,13 @@ class Constant(Node):
 class Diff(Node):
     expr: Node
 
+@dataclass
+class Rise(Node):
+    expr: Node
+
+@dataclass
+class Fall(Node):
+    expr: Node
 
 @dataclass
 class Cumsum(Node):

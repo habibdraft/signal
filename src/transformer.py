@@ -4,6 +4,8 @@ from ast_nodes import (
     Signal,
     Constant,
     Diff,
+    Rise,
+    Fall,
     Cumsum,
     Eq,
     And,
@@ -21,6 +23,12 @@ class ASTBuilder(Transformer):
 
     def diff(self, items):
         return Diff(items[0])
+
+    def rise(self, items):
+        return Rise(items[0])
+
+    def fall(self, items):
+        return Fall(items[0])
 
     def cumsum(self, items):
         return Cumsum(items[0])
