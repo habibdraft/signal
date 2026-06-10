@@ -1,31 +1,43 @@
+# evaluate.py
+
 from ast_nodes import Signal, Constant, Diff, Rise, Fall, Cumsum, Eq, And, Or
+from dsl_types import DSLType
 import torch
 
 def evaluate(node, ctx):
 
     if isinstance(node, Signal):
-        return ctx[node.name]
+        return ctx[node.name], DSLType.VECTOR
 
     if isinstance(node, Constant):
-        return node.value
+        return node.value, DSLType.SCALAR
 
     if isinstance(node, Diff):
-        return torch.diff(evaluate(node.expr, ctx))
+        value, _ = evaluate(node.expr, ctx)
+        return torch.diff(value), DSLType.VECTOR
 
     if isinstance(node, Rise):
-        return evaluate(Diff(node.expr), ctx) == 1
+        value, _ = evaluate(Diff(node.expr), ctx)
+        return (value == 1), DSLType.MASK
 
     if isinstance(node, Fall):
-        return evaluate(Diff(node.expr), ctx) == -1
+        value, _ = evaluate(Diff(node.expr), ctx)
+        return (value == -1), DSLType.MASK
 
     if isinstance(node, Cumsum):
-        return torch.cumsum(evaluate(node.expr, ctx), dim=0)
+        return torch.cumsum(evaluate(node.expr, ctx), dim=0), DSLType.VECTOR
 
     if isinstance(node, Eq):
-        return evaluate(node.left, ctx) == evaluate(node.right, ctx)
+        lv, lt = evaluate(node.left, ctx)
+        rv, rt = evaluate(node.right, ctx)
+        if lt == DSLType.SCALAR and rt == DSLType.SCALAR:
+            return (lv == rv), DSLType.SCALAR
+
+        return lv == rv, DSLType.MASK
 
     if isinstance(node, And):
-        return evaluate(node.left, ctx) & evaluate(node.right, ctx)
+        return evaluate(node.left, ctx) & evaluate(node.right, ctx), DSLType.MASK
 
     if isinstance(node, Or):
-        return evaluate(node.left, ctx) | evaluate(node.right, ctx)
+        return evaluate(node.left, ctx) | evaluate(node.right, ctx), DSLType.MASK
+

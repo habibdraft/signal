@@ -1,13 +1,13 @@
+# ast_nodes.py
+
 from dataclasses import dataclass
 
 class Node:
     pass
 
-
 @dataclass
 class Signal(Node):
     name: str
-
 
 @dataclass
 class Constant(Node):
