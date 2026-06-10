@@ -1,9 +1,9 @@
-# compiled.py
+# expression.py
 
 from dataclasses import dataclass
 
 @dataclass
-class Compiled:
+class Expression:
     node: object
     type: object
     evaluator: callable
