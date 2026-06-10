@@ -13,7 +13,6 @@ class Signal(Node):
 class Constant(Node):
     value: float
 
-
 @dataclass
 class Diff(Node):
     expr: Node

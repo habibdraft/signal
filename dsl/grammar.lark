@@ -2,11 +2,9 @@ start: expr
 
 ?expr: expr "&" expr   -> and_expr
      | expr "|" expr   -> or_expr
-     | expr "==" SIGNED_NUMBER -> eq
+     | expr "==" expr -> eq
      | "C" "(" expr ")" -> cumsum
      | "D" "(" expr ")" -> diff
-     | "R" "(" expr ")" -> rise
-     | "F" "(" expr ")" -> fall
      | NAME
      | SIGNED_NUMBER
      | "(" expr ")"
