@@ -34,20 +34,6 @@ t = lambda x, y: y[stable(x)].sum()
 
 ---
 
-## 🏗️ Architecture
-
-```mermaid
-flowchart TD
-    A[DSL Source Code] --> B[Lark Parser]
-    B --> C[Parse Tree]
-    C --> D[Transformer]
-    D --> E[AST Nodes]
-    E --> F[Evaluator]
-    F --> G[Computed Results]
-```
-
----
-
 ## 📁 Project Structure
 
 ```
