@@ -1,6 +1,8 @@
+# transformer.py
+
 from lark import Transformer
 
-from ast_nodes import (
+from ast.ast_nodes import (
     Signal,
     Constant,
     Diff,
@@ -16,7 +18,7 @@ class ASTBuilder(Transformer):
     def NAME(self, items):
         return Signal(str(items))
 
-    def NUMBER(self, items):
+    def SIGNED_NUMBER(self, items):
         return Constant(float(items))
 
     def diff(self, items):

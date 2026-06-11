@@ -1,23 +1,29 @@
+# nodes.py
+
 from dataclasses import dataclass
 
 class Node:
     pass
 
-
 @dataclass
 class Signal(Node):
     name: str
-
 
 @dataclass
 class Constant(Node):
     value: float
 
-
 @dataclass
 class Diff(Node):
     expr: Node
 
+@dataclass
+class Rise(Node):
+    expr: Node
+
+@dataclass
+class Fall(Node):
+    expr: Node
 
 @dataclass
 class Cumsum(Node):
