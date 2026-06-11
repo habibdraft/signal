@@ -1,4 +1,4 @@
-# dsl_types.py
+# types.py
 
 from enum import Enum
 class DSLType(Enum):
