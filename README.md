@@ -1,4 +1,4 @@
-# Signal Transform DSL
+# Event QL
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![Parser](https://img.shields.io/badge/parser-Lark-green.svg)
