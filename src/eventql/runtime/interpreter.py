@@ -12,7 +12,7 @@ def eval_value(node, ctx):
         return torch.tensor(node.value)
 
     if isinstance(node, Diff):
-        return torch.diff(eval_value(node.expr, ctx))
+        return torch.cat((torch.zeros(1), torch.diff(eval_value(node.expr, ctx))))
 
     if isinstance(node, Cumsum):
         return torch.cumsum(eval_value(node.expr, ctx), dim=0)
