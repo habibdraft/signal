@@ -1,4 +1,4 @@
-# Signal Transform DSL
+# Event QL
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![Parser](https://img.shields.io/badge/parser-Lark-green.svg)
@@ -91,42 +91,6 @@ clean(x) = mean(x where stable(x))
 ```dsl
 score(x, y) = mean(x where y > threshold)
 ```
-
----
-
-## Compilation Pipeline
-
-### Step 1 — Parse DSL
-
-Grammar defined in:
-
-```
-dsl/grammar.lark
-```
-
-Uses Lark to convert source into a parse tree.
-
----
-
-### Step 2 — Build AST
-
-Handled by:
-
-```
-src/transformer.py
-```
-
----
-
-### Step 3 — Evaluate AST
-
-Handled by:
-
-```
-src/evaluate.py
-```
-
-Executes AST nodes using vectorized operations.
 
 ---
 
