@@ -1,8 +1,8 @@
 # compiler.py
 
-from expression import Expression
-from evaluator.evaluate import eval_value
-from evaluator.infer_type import infer_type
+from eventql.compiler.expression import Expression
+from eventql.runtime.interpreter import eval_value
+from eventql.semantics.infer_type import infer_type
 
 def compiler(node):
 
