@@ -134,9 +134,8 @@ result = y[mask].sum()
 ```python
 import math
 import torch
-import eventql
-
 from eventql import ASTBuilder, compiler, parser
+
 def eval_expr(expr, ctx):
     compiled = compiler(ASTBuilder().transform(parser.parse(expr)))
     return compiled.evaluate(ctx)
@@ -151,15 +150,6 @@ ctx = {
 expr = 'y < 0'
 eval_expr(expr, ctx)
 ```
-
----
-
-## Design Philosophy
-
-- Compiler architecture for data transforms
-- Signal-first composability
-- Vectorized execution model
-
 ---
 
 ## Dependencies
